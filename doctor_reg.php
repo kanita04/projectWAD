@@ -20,7 +20,7 @@ $sql = "INSERT INTO Doctor (`username`, `pass1`, `fname` ,`lname`, `DOB`, `gende
 
 // insert in database 
    if ($conn->query($sql) === TRUE) {
-  echo "New doctor record created successfully";
+  echo "Registered successfully!!";
   }else{
     echo "Registration unsuccessful";
  }
@@ -28,3 +28,8 @@ $sql = "INSERT INTO Doctor (`username`, `pass1`, `fname` ,`lname`, `DOB`, `gende
   echo "Password did not match";
 }
 ?>
+
+<!DOCTYPE html>
+<html>
+  <a href="doctor_login.php"><button>Login</button></a>
+</html>

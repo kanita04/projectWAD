@@ -18,7 +18,7 @@ $sql = "INSERT INTO Pharmacist (`username`, `pass1`, `fname` ,`lname`, `DOB`, `g
 
 // insert in database 
    if ($conn->query($sql) === TRUE) {
-  echo "New pharmacist record created successfully";
+  echo "Registered succesfully!!";
   }else{
     echo "Registration unsuccessful";
  }
@@ -26,3 +26,8 @@ $sql = "INSERT INTO Pharmacist (`username`, `pass1`, `fname` ,`lname`, `DOB`, `g
   echo "Password did not match";
 }
 ?>
+
+<!DOCTYPE html>
+<html>
+  <a href="pharmacist_login.php"><button>Login</button></a>
+</html>

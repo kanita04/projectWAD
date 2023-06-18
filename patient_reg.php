@@ -19,7 +19,7 @@ $sql = "INSERT INTO Patient (`username`, `pass1`, `fname` ,`lname`, `DOB`, `gend
 
 // insert in database 
    if ($conn->query($sql) === TRUE) {
-  echo "New patient  record created successfully";
+  echo "New patient  record created successfully<br>";
   }else{
     echo "Registration unsuccessful";
  }
@@ -31,3 +31,8 @@ $sql = "INSERT INTO Patient (`username`, `pass1`, `fname` ,`lname`, `DOB`, `gend
   
 // Check if the form is submitted
 ?>
+
+<!DOCTYPE html>
+<html>
+  <a href="patient_login.php"><button>Login</button></a>
+</html>
