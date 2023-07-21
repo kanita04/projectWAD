@@ -1,19 +1,55 @@
 <?php
 session_start();
+require_once("connection.php"); // Replace with your database connection code
+
+// Check if the user is logged in (based on your session implementation)
+if (!isset($_SESSION['username'])) {
+    // Redirect to login page or handle unauthorized access
+    header("Location: doctor_login.php");
+    exit;
+}
+
+// Get the doctor's username from the session
+$doctorUsername = $_SESSION['username'];
+
+// Retrieve the doctor_ID based on the username
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Get the doctor's details from the database
+$sql = "SELECT Doctor_ID FROM Doctor WHERE username = '$doctorUsername'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $doctorID = $row['Doctor_ID'];
+
+    // Fetch the Doctor's appointments based on the Doctor_ID
+    $sql = "SELECT * FROM Appointments WHERE Doctor_ID = '$doctorID'";
+    $appointmentResult = $conn->query($sql);
+} else {
+    echo "Doctor not found!";
+    exit;
+}
+
+$conn->close();
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Doctor Homepage</title>
+    <title>View Appointments</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Welcome to duo Pharm</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="users_homepage2.css">
+    <link rel="stylesheet" href="table.css">    
 </head>
-
 <body>
 <header class="header fixed-top">
     <div class="container">
@@ -59,32 +95,38 @@ session_start();
         </div>
       </div>
     </div>
-</header>
+</header>    
 
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-md-6">
-      <section class="homepage" id="homepage">
-        <div class="content text-center text-md-left">
-          <h3>Your Health is our Priority</h3>
-          <p>Welcome to Duo Pharm. A place where you can find all the drugs you need along with medical counselling with a click of a button. Duo Pharm is here to take care of all your needs.</p>
-          <p>What would you like to do next?</p>
+    <div class="table">
+    <h2>Appointments for <?php echo $doctorUsername; ?></h2>
 
-          <div class="directions">
-            <a href="doctor_view_prescriptions.php"><button type="button">View prescriptions</button></a>
-            <a href="prescribe_drugs.php"><button type="button">Prescribe drugs</button></a>
-            <a href="doctor_appointments.php"><button type="button">View appointments</button></a>
-            <a href=#><button type="button">Chat with us</button></a>
-          </div>
-        </div>
-      </section>
+    <table>
+        <tr>
+            <th>Appointment ID</th>
+            <th>Patient ID</th>
+            <th>Appointment Date</th>
+            <th>Appointment Time</th>
+            <th>Appointment Status</th>
+        </tr>
+
+        <?php
+        if ($appointmentResult->num_rows > 0) {
+            while ($appointmentRow = $appointmentResult->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . $appointmentRow['Appointment_ID'] . "</td>";
+                echo "<td>" . $appointmentRow['Patient_ID'] . "</td>";
+                echo "<td>" . $appointmentRow['Appointment_Date'] . "</td>";
+                echo "<td>" . $appointmentRow['Appointment_Time'] . "</td>";
+                echo "<td>" . $appointmentRow['Appointment_Status'] . "</td>";
+                echo "</tr>";
+            }
+        } else {
+            echo "<tr><td colspan='5'>No appointments found.</td></tr>";
+        }
+        ?>
+    </table>
     </div>
-    <div class="col-md-6">
-      <div class="doctor-background-image"></div>
-    </div>
-  </div>
-</div>
+    <script src="user_homepage.js"></script>
 
-<script src="user_homepage.js"></script>
 </body>
 </html>

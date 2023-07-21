@@ -1,19 +1,41 @@
 <?php
 session_start();
+require_once("connection.php");
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check if the doctor is logged in
+if (isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+
+    // Retrieve the doctor's ID based on the username
+    $sql = "SELECT Doctor_ID FROM Doctor WHERE username = '$username'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $doctorId = $row['Doctor_ID'];
+
+    // Retrieve prescriptions for the specific doctor
+    $sql = "SELECT * FROM Prescription WHERE Doctor_ID = '$doctorId'";
+        $result = $conn->query($sql);
+    }
+}
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Doctor Homepage</title>
+    <title>Doctor's Prescriptions</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Welcome to duo Pharm</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="users_homepage2.css">
+    <link rel="stylesheet" href="table.css">
 </head>
-
 <body>
 <header class="header fixed-top">
     <div class="container">
@@ -59,32 +81,35 @@ session_start();
         </div>
       </div>
     </div>
-</header>
-
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-md-6">
-      <section class="homepage" id="homepage">
-        <div class="content text-center text-md-left">
-          <h3>Your Health is our Priority</h3>
-          <p>Welcome to Duo Pharm. A place where you can find all the drugs you need along with medical counselling with a click of a button. Duo Pharm is here to take care of all your needs.</p>
-          <p>What would you like to do next?</p>
-
-          <div class="directions">
-            <a href="doctor_view_prescriptions.php"><button type="button">View prescriptions</button></a>
-            <a href="prescribe_drugs.php"><button type="button">Prescribe drugs</button></a>
-            <a href="doctor_appointments.php"><button type="button">View appointments</button></a>
-            <a href=#><button type="button">Chat with us</button></a>
-          </div>
-        </div>
-      </section>
+</header>    
+    <div class="container mt-5">
+        <h1>Doctor's Prescriptions</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Prescription ID</th>
+                    <th>Patient ID</th>
+                    <th>Drug ID</th>
+                    <th>Prescription Date</th>
+                    <th>Dosage</th>
+                    <th>Frequency</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($row = $result->fetch_assoc()) { ?>
+                    <tr>
+                        <td><?php echo $row['Prescription_ID']; ?></td>
+                        <td><?php echo $row['Patient_ID']; ?></td>
+                        <td><?php echo $row['Drug_ID']; ?></td>
+                        <td><?php echo $row['Prescription_date']; ?></td>
+                        <td><?php echo $row['Dosage']; ?></td>
+                        <td><?php echo $row['Frequency']; ?></td>
+                        <td><?php echo $row['Status']; ?></td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
     </div>
-    <div class="col-md-6">
-      <div class="doctor-background-image"></div>
-    </div>
-  </div>
-</div>
-
-<script src="user_homepage.js"></script>
 </body>
 </html>

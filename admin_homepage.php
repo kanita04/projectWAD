@@ -4,7 +4,7 @@ session_start();
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Doctor Homepage</title>
+    <title>Homepage</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Welcome to duo Pharm</title>
@@ -68,19 +68,21 @@ session_start();
         <div class="content text-center text-md-left">
           <h3>Your Health is our Priority</h3>
           <p>Welcome to Duo Pharm. A place where you can find all the drugs you need along with medical counselling with a click of a button. Duo Pharm is here to take care of all your needs.</p>
-          <p>What would you like to do next?</p>
+          <p>Which table are you interested in?</p>
 
           <div class="directions">
-            <a href="doctor_view_prescriptions.php"><button type="button">View prescriptions</button></a>
-            <a href="prescribe_drugs.php"><button type="button">Prescribe drugs</button></a>
-            <a href="doctor_appointments.php"><button type="button">View appointments</button></a>
-            <a href=#><button type="button">Chat with us</button></a>
+            <a href="doctor_registration_table.php"><button type="button">Doctor's table</button></a>
+            <a href="patient_registration_table.php"><button type="button">Patient's table</button></a>
+            <a href="pharmacist_registration_table.php"><button type="button">Pharmacist table</button></a>
+            <a href="admin_registration_table.php"><button type="button">Admin table</button></a>
+            <a href="drug_registration_table.php"><button type="button">Drugs table</button></a>
+            <a href="prescriptions_view_table.php"><button type="button">Prescriptions table</button></a>
           </div>
         </div>
       </section>
     </div>
     <div class="col-md-6">
-      <div class="doctor-background-image"></div>
+      <div class="background-image"></div>
     </div>
   </div>
 </div>

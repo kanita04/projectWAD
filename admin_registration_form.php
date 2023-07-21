@@ -2,22 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="registration_form2.css">
-    <title>Doctor signup</title>
-    <style>
-
-#signup
-{
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    background-color: #00b8b8;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-    </style>
+    <title>Admin registration</title>
   </head>
 
 <body>
@@ -31,8 +16,8 @@
     
 <div class="reg-form">
 
-<form  action="doctor_reg.php" method="POST">
-  <h2>Doctor Registration form</h2>
+<form  action="admin_reg.php" method="POST">
+  <h2>Admin Registration form</h2>
   <label for="fname">First name:</label>
   <input type="text" id="txtfname" name="txtfname"><br><br>
 
@@ -54,9 +39,6 @@
   <label for="phone">Phone number:</label>
   <input type="tel" id="txtPhone" name="txtPhone"><br><br>
 
-  <label for="YOE">Years of experience:</label>
-  <input type="number" id="YOE" name="YOE"><br><br>
-
   <label for="username">Create username:</label>
   <input type="text" id="txtusername" name="txtusername"><br><br>
 
@@ -66,7 +48,7 @@
   <label for="pass2">Confirm Password:</label><br>
   <input type="password" name="pass2"><br>
 
-  <input formaction="doctor_reg.php" type="submit" name="submit"> 
+  <input type="submit" name="submit"> 
   
 </form> 
 </body>
