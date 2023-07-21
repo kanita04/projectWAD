@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
+
+:root {
+  --blue: #00b8b8;
+  --black: #333;
+  --white: #fff;
+  --light-color: #666;
+  --light-bg: #eee;
+  --border: 0.2rem solid rgba(0, 0, 0, 0.1);
+  --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none !important;
+  text-transform: capitalize;
+}
+
+*::-webkit-scrollbar {
+  height: 0.5rem;
+  width: 1rem;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--blue);
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: transparent;
+    padding: 2rem;
+    z-index: 100;
+    display: inline-block;
+    /* justify-content: space-between; */
+    align-items: center;
+    text-align: center;
+  }
+  
+  .header .logo {
+    font-size: 2.5rem;
+    color: var(--black);
+  }
+  
+  .header .logo span {
+    color: var(--blue);
+  }
+  
+body {
+    background-image: url(user_login_bg1.jpg);
+    background-repeat: none;
+    background-size: cover;
+    background-color: var(--light-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding-top: 6rem;
+}
+
+.user_login {
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+}
+
+.user_login button[type="button"]{
+    display: inline-block;
+    width: 35%;
+    padding: 5px;
+    margin-top: 5px;
+    background-color:var(--blue);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.admin-signin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: #00b8b8;
+    border-style: solid;
+    flex-direction: column;
+    text-align:center;
+    padding: 10px;
+}
+#or {
+    text-align: center;
+    display: block;
+}
+
+#admin-btn {
+    background-color: #666;
+    color:var(--white);
+    width: fit-content;
+    border: none;
+    display: block;
+    
+}
+
+
+
